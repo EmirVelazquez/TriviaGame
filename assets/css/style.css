@@ -1,0 +1,22 @@
+/* My own CSS goes here */
+h1 {
+    color: rgb(247, 173, 64);
+    font-size: 100px;
+}
+
+body, html {
+    height: 100%;
+}
+
+.backGround { 
+    background-image: url("/assets/images/bgController.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgb(138, 136, 136);
+    text-align: center;
+}
