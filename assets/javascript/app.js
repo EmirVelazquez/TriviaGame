@@ -61,6 +61,8 @@ $(document).ready(function () {
 
     ]
 
+    //All other global variables
+
 
 
 
@@ -115,6 +117,12 @@ $(document).ready(function () {
     //Main Process Executes Here
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    //This on click event will start the timer, display the first question, hide the start button
+    $("#startButton").click(function () {
+        $("#questionForm").show();
+        $("#startButton").hide();
+    });
+
     //jQuery that populates question to DOM
     $("#question").text(allQuestions[0].question);
 
@@ -128,8 +136,6 @@ $(document).ready(function () {
     // console.log(allQuestions[0].question);
     // console.log(allQuestions[0].answers);
     // console.log(allQuestions[0].correctAnswer);
-
-
 
 
 

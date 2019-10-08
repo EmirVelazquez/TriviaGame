@@ -10,18 +10,16 @@ body, html {
 }
 
 .backGround { 
-    background-image: url("/assets/images/bgController.jpg");
-    position: relative;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
     min-height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .container {
     background-color: rgb(138, 136, 136);
     text-align: center;
     padding-bottom: 3.0rem;
+    border-radius: 12px;
 }
 
 #footer {
@@ -31,10 +29,30 @@ body, html {
     height: 3.0rem;
     background-color: rgb(138, 136, 136);
     border-top: 4px solid #fff;
+    text-align: center;
 }
 
 #footerAnchor {
     color: rgb(247, 173, 64);
     font-size: 10px;
-    float: right;
+}
+
+#questionForm {
+    display: none;
+}
+
+#startButton {
+    width: 25%;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 12px;
+    border: 2px solid rgb(247, 173, 64);
+}
+
+#startButton:hover {
+    background-color: rgb(247, 173, 64);
 }
