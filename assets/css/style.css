@@ -10,7 +10,8 @@ body, html {
 
 .backGround { 
     background-image: url("/assets/images/bgController.jpg");
-    height: 100%;
+    position: relative;
+    min-height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,4 +20,20 @@ body, html {
 .container {
     background-color: rgb(138, 136, 136);
     text-align: center;
+    padding-bottom: 3.0rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.0rem;
+    background-color: rgb(138, 136, 136);
+    border-top: 4px solid #fff;
+}
+
+#footerAnchor {
+    color: rgb(247, 173, 64);
+    font-size: 10px;
+    float: right;
 }
