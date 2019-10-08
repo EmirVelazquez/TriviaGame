@@ -1,18 +1,27 @@
 /* My own CSS goes here */
-h1 {
-    color: rgb(247, 173, 64);
-    font-size: 100px;
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
 }
 
 body, html {
     height: 100%;
     color: #fff;
+    position: relative;
 }
 
 .backGround { 
     background-color: #000000;
     background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
     min-height: 100vh;
+    position: relative;
+    padding-bottom: 3.0rem;
+    overflow: hidden;
+    display: block,
 }
 
 .container {
@@ -55,4 +64,9 @@ body, html {
 
 #startButton:hover {
     background-color: rgb(247, 173, 64);
+}
+
+h1 {
+    color: rgb(247, 173, 64);
+    font-size: 100px;
 }

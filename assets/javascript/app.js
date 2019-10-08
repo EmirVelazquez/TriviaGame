@@ -55,27 +55,30 @@ $(document).ready(function () {
             },
             correctAnswer: "d"
         },
-
-
-
-
+        {
+            question: "What game was originally developed for Mac, but later released on Microsoft's Xbox?",
+            answers: {
+                a: "Diablo",
+                b: "DOOM",
+                c: "Halo: Combat Evolved",
+                d: "Marathon"
+            },
+            correctAnswer: "c"
+        },
+        {
+            question: "The PlayStation 2 is considered one of the most succesful gaming consoles ever, what year was it released in North America?",
+            answers: {
+                a: "October 26, 2000",
+                b: "November 30, 2000",
+                c: "November 24, 2000",
+                d: "March 4, 2000"
+            },
+            correctAnswer: "a"
+        }
     ]
 
-    //All other global variables
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //This will hold the number of correct questions answered by user
+    var qCorrect = 0;
 
 
 
@@ -83,48 +86,33 @@ $(document).ready(function () {
     //Functions Here
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    //This function will start the timer, display random question, hide the start button
+    function startGame() {
 
+        //This on click event is for the user to click on
+        $("#startButton").click(function () {
+            //This line makes the form show on the DOM
+            $("#questionForm").show();
+            //This line hides the start button
+            $("#startButton").hide();
+            //This calls the random question function to pick a random question when user clicks start
+            randomQuestion();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        });
+    }
+    //This function will chose a random question out of the allQuestions object
+    function randomQuestion() {
+        var chosenQuestion = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+        console.log(chosenQuestion);
+    }
 
 
 
     //Main Process Executes Here
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    //This on click event will start the timer, display the first question, hide the start button
-    $("#startButton").click(function () {
-        $("#questionForm").show();
-        $("#startButton").hide();
-    });
-
     //jQuery that populates question to DOM
-    $("#question").text(allQuestions[0].question);
+    // $("#question").text(chosenQuestion.allQuestions.question);
 
     //jQuery that populates question answers to DOM
     $("#answerA").text(allQuestions[0].answers.a);
@@ -137,11 +125,8 @@ $(document).ready(function () {
     // console.log(allQuestions[0].answers);
     // console.log(allQuestions[0].correctAnswer);
 
-
-
-
-
-
+    // Call start game function
+    startGame();
 
 
 
