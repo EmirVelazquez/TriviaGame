@@ -36,7 +36,7 @@ $(document).ready(function () {
             correctAnswer: "d"
         },
         {
-            question: "Doctor Ivo 'Eggman' Robotnik is the enemy of which video game character?",
+            question: 'Doctor Ivo "Eggman" Robotnik is the enemy of which video game character?',
             answers: {
                 a: "Sonic the Hedgehog",
                 b: "Kirby",
@@ -74,11 +74,45 @@ $(document).ready(function () {
                 d: "March 4, 2000"
             },
             correctAnswer: "a"
+        },
+        {
+            question: "This game was released in 1996 for the PlayStation and features a mutant enhanced bandicoot, what is his name?",
+            answers: {
+                a: "Spyro",
+                b: "Crash",
+                c: "Snake",
+                d: "Sly Cooper"
+            },
+            correctAnswer: "b"
+        },
+        {
+            question: "This game closely resembles table tennis and was developed by Atari, what is it called?",
+            answers: {
+                a: "Dig Dug",
+                b: "Space Invaders",
+                c: "Pong",
+                d: "Q*bert"
+            },
+            correctAnswer: "c"
+        },
+        {
+            question: "Minecraft is a sandbox video game released in 2009 by Mojang, what is the enemy mob that explodes when it gets close to your character?",
+            answers: {
+                a: "Enderman",
+                b: "Zombie",
+                c: "Skeleton",
+                d: "Creeper"
+            },
+            correctAnswer: "d"
         }
     ]
 
     //This will hold the number of correct questions answered by user
     var qCorrect = 0;
+    //This will hold the number of seconds on timer
+    var timer = 30;
+    //This will hold the new shuffled questions
+    var shuffledQuestions = [];
 
 
 
@@ -95,39 +129,45 @@ $(document).ready(function () {
             $("#questionForm").show();
             //This line hides the start button
             $("#startButton").hide();
-            //This calls the random question function to pick a random question when user clicks start
-            randomQuestion();
-
+            //This calls the shuffle function to shuffle allQuestions object
+            shuffle(allQuestions);
+            //This puts the shuffled allQuestions into a new variable
+            shuffledQuestions.push(allQuestions);
+            //This updates the HTML with the first shuffled Question
+            $("#question").text(shuffledQuestions[0][0].question);
+            //This will update the HTML with the answer choices of first shuffled question
+            $("#answerA").text(shuffledQuestions[0][0].answers.a);
+            $("#answerB").text(shuffledQuestions[0][0].answers.b);
+            $("#answerC").text(shuffledQuestions[0][0].answers.c);
+            $("#answerD").text(shuffledQuestions[0][0].answers.d);
         });
     }
-    //This function will chose a random question out of the allQuestions object
-    function randomQuestion() {
-        var chosenQuestion = allQuestions[Math.floor(Math.random() * allQuestions.length)];
-        console.log(chosenQuestion);
+
+    //This function shuffles an array whenever it is called and given the parameter array
+    function shuffle(array) {
+        var counter = array.length, temp, index;
+        // While there are elements in the array
+        while (counter > 0) {
+            // Pick a random index
+            index = Math.floor(Math.random() * counter);
+            // Decrease counter by 1
+            counter--;
+            // And swap the last element with it
+            temp = array[counter];
+            array[counter] = array[index];
+            array[index] = temp;
+        }
+        return array;
     }
 
+    //This function will set the timer to 30 seconds and display it
 
 
     //Main Process Executes Here
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    //jQuery that populates question to DOM
-    // $("#question").text(chosenQuestion.allQuestions.question);
-
-    //jQuery that populates question answers to DOM
-    $("#answerA").text(allQuestions[0].answers.a);
-    $("#answerB").text(allQuestions[0].answers.b);
-    $("#answerC").text(allQuestions[0].answers.c);
-    $("#answerD").text(allQuestions[0].answers.d);
-
-
-    // console.log(allQuestions[0].question);
-    // console.log(allQuestions[0].answers);
-    // console.log(allQuestions[0].correctAnswer);
-
     // Call start game function
     startGame();
-
 
 
 
