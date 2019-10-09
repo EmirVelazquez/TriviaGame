@@ -107,12 +107,14 @@ $(document).ready(function () {
         }
     ]
 
-    //This will hold the number of correct questions answered by user
-    var qCorrect = 0;
-    //This will hold the number of seconds on timer
-    var timer = 30;
     //This will hold the new shuffled questions
     var shuffledQuestions = [];
+    //This will hold the number of seconds on timer
+    var timeRemaining = 31;
+    //This will hold the timer interval in milliseconds
+    var intervalId = setInterval(countdown, 1000);
+    //This will hold the number of correct questions answered by user
+    var qCorrect = 0;
 
 
 
@@ -140,6 +142,9 @@ $(document).ready(function () {
             $("#answerB").text(shuffledQuestions[0][0].answers.b);
             $("#answerC").text(shuffledQuestions[0][0].answers.c);
             $("#answerD").text(shuffledQuestions[0][0].answers.d);
+            //This function call will display and start counting down
+            countdown();
+
         });
     }
 
@@ -160,7 +165,15 @@ $(document).ready(function () {
         return array;
     }
 
-    //This function will set the timer to 30 seconds and display it
+    function countdown() {
+        if (timeRemaining === 0) {
+            clearTimeout(intervalId);
+            console.log("Time is UP!");
+        } else {
+            $("#timer").html("Time Remaining: " + timeRemaining);
+            timeRemaining--;
+        }
+    }
 
 
     //Main Process Executes Here
@@ -168,6 +181,8 @@ $(document).ready(function () {
 
     // Call start game function
     startGame();
+
+
 
 
 
