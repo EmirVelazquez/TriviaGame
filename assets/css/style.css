@@ -70,3 +70,7 @@ h1 {
     color: rgb(247, 173, 64);
     font-size: 100px;
 }
+
+button:focus {
+    background-color: rgb(247, 173, 64);
+}

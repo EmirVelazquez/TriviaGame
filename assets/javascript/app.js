@@ -110,11 +110,15 @@ $(document).ready(function () {
     //This will hold the new shuffled questions
     var shuffledQuestions = [];
     //This will hold the number of seconds on timer
-    var timeRemaining = 31;
+    var timeRemaining;
     //This will hold the timer interval in milliseconds
     var intervalId = setInterval(countdown, 1000);
     //This will hold the number of correct questions answered by user
     var qCorrect = 0;
+    //This will hold the number of wrong questions answered by user
+    var qWrong = 0;
+    //This will hold the number of questions not answered by user
+    var qUnanswered = 0;
 
 
 
@@ -124,9 +128,12 @@ $(document).ready(function () {
 
     //This function will start the timer, display random question, hide the start button
     function startGame() {
-
-        //This on click event is for the user to click on
+        //This on click event is for the user to click start button
         $("#startButton").click(function () {
+            //When user hits start timer will be set to 30 seconds
+            timeRemaining = 30;
+            //This function call will display and start counting down
+            countdown();
             //This line makes the form show on the DOM
             $("#questionForm").show();
             //This line hides the start button
@@ -142,10 +149,9 @@ $(document).ready(function () {
             $("#answerB").text(shuffledQuestions[0][0].answers.b);
             $("#answerC").text(shuffledQuestions[0][0].answers.c);
             $("#answerD").text(shuffledQuestions[0][0].answers.d);
-            //This function call will display and start counting down
-            countdown();
 
         });
+
     }
 
     //This function shuffles an array whenever it is called and given the parameter array
@@ -175,6 +181,8 @@ $(document).ready(function () {
         }
     }
 
+
+    //Need to make a function that resets the game after user hits Start Over Button
 
     //Main Process Executes Here
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
