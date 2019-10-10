@@ -13,7 +13,7 @@ $(document).ready(function () {
                 c: "Nintendo",
                 d: "Sega"
             },
-            correctAnswer: "c"
+            correctAnswer: "Nintendo"
         },
         {
             question: "In the world of video games, what does NES stand for?",
@@ -23,7 +23,7 @@ $(document).ready(function () {
                 c: "Network Edge Switch",
                 d: "Never Ending Story"
             },
-            correctAnswer: "b"
+            correctAnswer: "Nintendo Entertainment System"
         },
         {
             question: "What is considered the best gaming console today?",
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 c: "Xbox One X",
                 d: "None of the above...this is opinion based."
             },
-            correctAnswer: "d"
+            correctAnswer: "None of the above...this is opinion based."
         },
         {
             question: 'Doctor Ivo "Eggman" Robotnik is the enemy of which video game character?',
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 c: "Mega Man",
                 d: "Pac-Man"
             },
-            correctAnswer: "a"
+            correctAnswer: "Sonic the Hedgehog"
         },
         {
             question: "Master Hand is a characer and a boss in which game series?",
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 c: "EarthBound",
                 d: "Super Smash Bros"
             },
-            correctAnswer: "d"
+            correctAnswer: "Super Smash Bros"
         },
         {
             question: "What game was originally developed for Mac, but later released on Microsoft's Xbox?",
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 c: "Halo: Combat Evolved",
                 d: "Marathon"
             },
-            correctAnswer: "c"
+            correctAnswer: "Halo: Combat Evolved"
         },
         {
             question: "The PlayStation 2 is considered one of the most succesful gaming consoles ever, what year was it released in North America?",
@@ -73,7 +73,7 @@ $(document).ready(function () {
                 c: "November 24, 2000",
                 d: "March 4, 2000"
             },
-            correctAnswer: "a"
+            correctAnswer: "October 26, 2000"
         },
         {
             question: "This game was released in 1996 for the PlayStation and features a mutant enhanced bandicoot, what is his name?",
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 c: "Snake",
                 d: "Sly Cooper"
             },
-            correctAnswer: "b"
+            correctAnswer: "Crash"
         },
         {
             question: "This game closely resembles table tennis and was developed by Atari, what is it called?",
@@ -93,7 +93,7 @@ $(document).ready(function () {
                 c: "Pong",
                 d: "Q*bert"
             },
-            correctAnswer: "c"
+            correctAnswer: "Pong"
         },
         {
             question: "Minecraft is a sandbox video game released in 2009 by Mojang, what is the enemy mob that explodes when it gets close to your character?",
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 c: "Skeleton",
                 d: "Creeper"
             },
-            correctAnswer: "d"
+            correctAnswer: "Creeper"
         }
     ]
 
@@ -119,7 +119,8 @@ $(document).ready(function () {
     var qWrong = 0;
     //This will hold the number of questions not answered by user
     var qUnanswered = 0;
-
+    //This will hold the users input to question
+    var userInput;
 
 
 
@@ -131,7 +132,7 @@ $(document).ready(function () {
         //This on click event is for the user to click start button
         $("#startButton").click(function () {
             //When user hits start timer will be set to 30 seconds
-            timeRemaining = 30;
+            timeRemaining = 5;
             //This function call will display and start counting down
             countdown();
             //This line makes the form show on the DOM
@@ -149,13 +150,15 @@ $(document).ready(function () {
             $("#answerB").text(shuffledQuestions[0][0].answers.b);
             $("#answerC").text(shuffledQuestions[0][0].answers.c);
             $("#answerD").text(shuffledQuestions[0][0].answers.d);
-
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            console.log("Right Answer: " + shuffledQuestions[0][0].correctAnswer);
         });
 
     }
 
     //This function shuffles an array whenever it is called and given the parameter array
     function shuffle(array) {
+        //Local variable created here
         var counter = array.length, temp, index;
         // While there are elements in the array
         while (counter > 0) {
@@ -171,16 +174,105 @@ $(document).ready(function () {
         return array;
     }
 
+    //This function is for making the timer run down from 30 seconds
     function countdown() {
         if (timeRemaining === 0) {
+            //This line stops the counter
             clearTimeout(intervalId);
-            console.log("Time is UP!");
+            //This line will execute something else whenever time runs out
+            alert("Time is UP!");
+            //This line adds 1 to the qUnanswered variable
+            qUnanswered++;
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            console.log("Unanswered: " + qUnanswered);
         } else {
+            //This line updates HTML with the ticking counter
             $("#timer").html("Time Remaining: " + timeRemaining);
+            //This line decreases the counter by one second
             timeRemaining--;
         }
     }
 
+
+    //This function will hold the user's input to the question, check's wether wrong or right, adds to counter
+    function userAnswer() {
+        //This on click event recognizes user input A
+        $("#answerA").click(function () {
+            if (shuffledQuestions[0][0].answers.a === shuffledQuestions[0][0].correctAnswer) {
+                alert("correct");
+                //This adds 1 to the qCorrect variable
+                qCorrect++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Correct: " + qCorrect);
+            } else {
+                alert("wrong");
+                qWrong++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Wrong: " + qWrong);
+            }
+            //Test
+
+        });
+        //This on click event recognizes user input B
+        $("#answerB").click(function () {
+            if (shuffledQuestions[0][0].answers.b === shuffledQuestions[0][0].correctAnswer) {
+                alert("correct");
+                //This adds 1 to the qCorrect variable
+                qCorrect++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Correct: " + qCorrect);
+            } else {
+                alert("wrong");
+                //This adds 1 to the qWrong variable
+                qWrong++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Wrong: " + qWrong);
+            }
+            //Test
+
+        });
+        //This on click event recognizes user input C
+        $("#answerC").click(function () {
+            if (shuffledQuestions[0][0].answers.c === shuffledQuestions[0][0].correctAnswer) {
+                alert("correct");
+                //This adds 1 to the qCorrect variable
+                qCorrect++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Correct: " + qCorrect);
+            } else {
+                alert("wrong");
+                //This adds 1 to the qWrong variable
+                qWrong++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Wrong: " + qWrong);
+            }
+            //Test
+
+        });
+        //This on click event recognizes user input D
+        $("#answerD").click(function () {
+            if (shuffledQuestions[0][0].answers.d === shuffledQuestions[0][0].correctAnswer) {
+                alert("correct");
+                //This adds 1 to the qCorrect variable
+                qCorrect++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Correct: " + qCorrect);
+            } else {
+                alert("wrong");
+                //This adds 1 to the qWrong variable
+                qWrong++;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log("Wrong: " + qWrong);
+            }
+            //Test
+
+        });
+
+    }
+
+    //Need to make a function that will run after user selects right or wrong answer, pulls next question
+
+    //Need to make a function that will run after timer expires and pull the next question
 
     //Need to make a function that resets the game after user hits Start Over Button
 
@@ -190,7 +282,15 @@ $(document).ready(function () {
     // Call start game function
     startGame();
 
+    //Call user answer function 
+    userAnswer();
 
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    console.log("Correct: " + qCorrect);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    console.log("Wrong: " + qWrong);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    console.log("Unanswered: " + qUnanswered);
 
 
 
