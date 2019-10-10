@@ -25,7 +25,7 @@ body, html {
 }
 
 .container {
-    background-color: rgb(138, 136, 136);
+    background-color: #727272;
     text-align: center;
     padding-bottom: 3.0rem;
     border-radius: 12px;
@@ -36,13 +36,13 @@ body, html {
     bottom: 0;
     width: 100%;
     height: 3.0rem;
-    background-color: rgb(138, 136, 136);
-    border-top: 4px solid #fff;
+    background-color: #727272;
+    border-top: 2px solid #fff;
     text-align: center;
 }
 
 #footerAnchor {
-    color: rgb(247, 173, 64);
+    color: #e4000f;
     font-size: 10px;
 }
 
@@ -58,19 +58,26 @@ body, html {
     padding: 10px;
     font-size: 20px;
     text-align: center;
-    border-radius: 12px;
-    border: 2px solid rgb(247, 173, 64);
+    border-radius: 60px;
+    border: 2px solid #e4000f;
 }
 
 #startButton:hover {
-    background-color: rgb(247, 173, 64);
+    background-color: #e4000f;
 }
 
 h1 {
-    color: rgb(247, 173, 64);
+    color: #e4000f;
     font-size: 100px;
 }
 
+#triviaTitle {
+    border: 12px solid #e4000f;
+    border-radius: 60px;
+    background-color: #fff;
+    margin: 20px 15px 0 15px;
+}
+
 button:focus {
-    background-color: rgb(247, 173, 64);
+    background-color: #e4000f ;
 }

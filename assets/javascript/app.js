@@ -270,9 +270,9 @@ $(document).ready(function () {
 
     }
 
-    //Need to make a function that will run after user selects right or wrong answer, pulls next question
-
     //Need to make a function that will run after timer expires and pull the next question
+
+    //Need to make a function that will run after user selects right or wrong answer, pulls next question
 
     //Need to make a function that resets the game after user hits Start Over Button
 
