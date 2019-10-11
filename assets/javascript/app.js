@@ -120,7 +120,7 @@ $(document).ready(function () {
     //This will hold the number of questions not answered by user
     var qUnanswered = 0;
     //This will hold the index number user is on
-    var indexNumber = 0;
+    var indexNumber;
 
 
 
@@ -131,8 +131,10 @@ $(document).ready(function () {
     function startGame() {
         //This on click event is for the user to click start button
         $("#startButton").click(function () {
+            //When user hits start indexNumber will be set to 0, pull the first question out of shuffledQuestions
+            indexNumber = 0;
             //When user hits start, timer will be set to 30 seconds
-            timeRemaining = 30;
+            timeRemaining = 20;
             //This function call will display timer and start counting down
             countdown();
             //This line makes the form show on the DOM
@@ -150,11 +152,7 @@ $(document).ready(function () {
             $("#answerB").text(shuffledQuestions[0][indexNumber].answers.b);
             $("#answerC").text(shuffledQuestions[0][indexNumber].answers.c);
             $("#answerD").text(shuffledQuestions[0][indexNumber].answers.d);
-            //Test
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            console.log("Right Answer: " + shuffledQuestions[0][indexNumber].correctAnswer);
         });
-
     }
 
     //This function shuffles an array whenever it is called and given the parameter array
@@ -188,8 +186,6 @@ $(document).ready(function () {
             indexNumber++;
             //This line will call the nextInLine function
             nextInLine();
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            console.log("Unanswered: " + qUnanswered);
         } else {
             //This line updates HTML with the ticking counter
             $("#timer").html("Time Remaining: " + timeRemaining);
@@ -204,117 +200,85 @@ $(document).ready(function () {
         //This on click event recognizes user input A
         $("#answerA").click(function () {
             if (shuffledQuestions[0][indexNumber].answers.a === shuffledQuestions[0][indexNumber].correctAnswer) {
-                alert("correct");
                 //This adds 1 to the qCorrect variable
                 qCorrect++;
                 //This line will add 1 to the indexNumber if correct
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Correct: " + qCorrect);
-
             } else {
-                alert("wrong");
                 qWrong++;
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Wrong: " + qWrong);
-
             }
-            //Test
-
         });
         //This on click event recognizes user input B
         $("#answerB").click(function () {
             if (shuffledQuestions[0][indexNumber].answers.b === shuffledQuestions[0][indexNumber].correctAnswer) {
-                alert("correct");
                 //This adds 1 to the qCorrect variable
                 qCorrect++;
                 //This line will add 1 to the indexNumber if correct
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Correct: " + qCorrect);
-
             } else {
-                alert("wrong");
                 //This adds 1 to the qWrong variable
                 qWrong++;
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Wrong: " + qWrong);
-
             }
-            //Test
-
         });
         //This on click event recognizes user input C
         $("#answerC").click(function () {
             if (shuffledQuestions[0][indexNumber].answers.c === shuffledQuestions[0][indexNumber].correctAnswer) {
-                alert("correct");
                 //This adds 1 to the qCorrect variable
                 qCorrect++;
                 //This line will add 1 to the indexNumber if correct
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Correct: " + qCorrect);
-
             } else {
-                alert("wrong");
                 //This adds 1 to the qWrong variable
                 qWrong++;
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Wrong: " + qWrong);
-
             }
-            //Test
-
         });
         //This on click event recognizes user input D
         $("#answerD").click(function () {
             if (shuffledQuestions[0][indexNumber].answers.d === shuffledQuestions[0][indexNumber].correctAnswer) {
-                alert("correct");
                 //This adds 1 to the qCorrect variable
                 qCorrect++;
                 //This line will add 1 to the indexNumber if correct
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Correct: " + qCorrect);
-
             } else {
-                alert("wrong");
                 //This adds 1 to the qWrong variable
                 qWrong++;
                 indexNumber++;
                 //This line stops the counter
                 clearTimeout(intervalId);
+                //This calls next in line function
                 nextInLine();
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                console.log("Wrong: " + qWrong);
-
             }
-            //Test
-
         });
 
     }
@@ -322,19 +286,26 @@ $(document).ready(function () {
     //This function will run after time expires or user selects right or wrong answer and pull the next question
     function nextInLine() {
         if (indexNumber === 10) {
+            //This line will clear the interval timer
             clearTimeout(intervalId);
-            // $("#questionForm").hide();
-            //Need to make a new Div to hold the questions correct, wrong, unanswered, and reset button
-            $("#questionForm").html('<h2>Questions correct: ' + qCorrect + '<h2>');
-            $("#questionForm").append('<h2>Questions wrong: ' + qWrong + '<h2>');
-            $("#questionForm").append('<h2>Questions unanswered: ' + qUnanswered + '<h2>');
-            console.log("STOP");
+            //This line will hide the questions container
+            $("#questionForm").hide();
+            //This line will show the counters container
+            $("#counterForm").show();
+            //This line will display users correct questions number
+            $("#qCorrect").html("Number Correct: " + qCorrect);
+            //This line will display users wrong questions number
+            $("#qWrong").html("Number Wrong: " + qWrong);
+            //This line will display users unasnwered questions number
+            $("#qUnanswered").html("Total Unanswered Questions: " + qUnanswered);
+            //This line will show the reset button
+            $("#resetButton").show();
         } else {
 
             //Will need to set a new interval for the timer
             intervalId = setInterval(countdown, 1000);
             //Time remaining will need to be reset again
-            timeRemaining = 30;
+            timeRemaining = 20;
             //This function call will redisplay counter and start counting down
             countdown();
             //This updates the HTML with the next indexNumber shuffled Question
@@ -344,38 +315,57 @@ $(document).ready(function () {
             $("#answerB").text(shuffledQuestions[0][indexNumber].answers.b);
             $("#answerC").text(shuffledQuestions[0][indexNumber].answers.c);
             $("#answerD").text(shuffledQuestions[0][indexNumber].answers.d);
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            console.log("Right Answer: " + shuffledQuestions[0][indexNumber].correctAnswer);
         }
+    }
+
+    //This function will run if the user clicks the reset button at the end
+    function resetGame() {
+        $("#resetButton").click(function () {
+            //When user hits reset button indexNumber will be set to 0, pull the first question out of shuffledQuestions
+            indexNumber = 0;
+            //When user hits reset, timer will be set to 30 seconds again
+            timeRemaining = 20;
+            //This will reset correct back to zero
+            qCorrect = 0;
+            //This will reset wrong back to zero
+            qWrong = 0;
+            //This will reset unasnwered back to zero
+            qUnanswered = 0;
+            //This function call will display timer and start counting down
+            countdown();
+            //This line makes the form show on the DOM
+            $("#questionForm").show();
+            //This will reset the timer interval in milliseconds
+            intervalId = setInterval(countdown, 1000);
+            //This line will hide the reset button
+            $("#resetButton").hide();
+            //This line will hide the counter form again
+            $("#counterForm").hide();
+            //This calls the shuffle function to shuffle allQuestions object
+            shuffle(allQuestions);
+            //This puts the shuffled allQuestions into the shuffledQuestions variable
+            shuffledQuestions.push(allQuestions);
+            //This updates the HTML with the first shuffled Question
+            $("#question").text(shuffledQuestions[0][indexNumber].question);
+            //This will update the HTML with the answer choices of first shuffled question
+            $("#answerA").text(shuffledQuestions[0][indexNumber].answers.a);
+            $("#answerB").text(shuffledQuestions[0][indexNumber].answers.b);
+            $("#answerC").text(shuffledQuestions[0][indexNumber].answers.c);
+            $("#answerD").text(shuffledQuestions[0][indexNumber].answers.d);
+        });
     }
 
     //Main Process Executes Here
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // Call start game function
+    // Call start game function to make it active, this will only run once unless user refreshes page
     startGame();
 
-    //Call user answer function 
+    //Call user answer function to make it active
     userAnswer();
 
-    //Call the end game function
-    // endGame();
-    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    console.log("Correct: " + qCorrect);
-    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    console.log("Wrong: " + qWrong);
-    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    console.log("Unanswered: " + qUnanswered);
+    //Call reset game function to make it active, this will run multiple times (depending on how many times user re plays)
+    resetGame();
 
-    //This for loop is doing nothing right now, just returns numbers 1-9
-    // function returnIndex() {
-    //     for (var i = 1; i <= 9; i++) {
-    //         console.log("Number: " + i);
-    //     }
-    //     return i;
-
-    // }
-
-    // returnIndex();
 
 });

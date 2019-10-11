@@ -1,4 +1,4 @@
-/* My own CSS goes here */
+/* My own custom CSS changes goes here */
 * {
     box-sizing: border-box;
 }
@@ -50,7 +50,7 @@ body, html {
     display: none;
 }
 
-#startButton {
+#startButton, #resetButton {
     width: 25%;
     background-color: #000000;
     color: #fff;
@@ -62,13 +62,17 @@ body, html {
     border: 2px solid #e4000f;
 }
 
-#startButton:hover {
+#startButton:hover, #resetButton:hover {
     background-color: #e4000f;
+}
+
+#resetButton, #counterForm {
+    display: none;
 }
 
 h1 {
     color: #e4000f;
-    font-size: 100px;
+    font-size: 80px;
 }
 
 #triviaTitle {
@@ -78,6 +82,15 @@ h1 {
     margin: 20px 15px 0 15px;
 }
 
-button:focus {
-    background-color: #e4000f ;
+p {
+    font-size: 20px;
+}
+
+/*Google font changes go here*/
+.backGround {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-family: 'Work Sans', sans-serif;
 }
